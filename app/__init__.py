@@ -1,4 +1,7 @@
+# coding= utf8
 from flask import Flask
+from ..mydb import operation
+
 
 # The way the application is created in the single-file version is very convenient 
 # but it has one big drawback.
@@ -15,4 +18,7 @@ def create_app():
     # register blueprint to the app
     app.register_blueprint(mainBlueprint)
     # attach route and error handler here
+    client=operation.connect()
+   # operation.insertOneDoc(client)
+    
     return app

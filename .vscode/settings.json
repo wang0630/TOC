@@ -2,5 +2,6 @@
     "python.linting.pylintEnabled": false,
     // Controls the font size in pixels.
     "editor.fontSize": 19,
-    "terminal.integrated.fontSize":15
+    "terminal.integrated.fontSize": 15,
+    "python.pythonPath": "venv/bin/python"
 }
