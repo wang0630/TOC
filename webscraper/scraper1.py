@@ -5,7 +5,7 @@ import pprint
 urlToRequest=[
     {
         "url": "https://www.facebook.com/fatcattoast/",
-        "type": [u"早午餐",u"日式料理"]
+        "type": [u"早午餐",u"日式丼飯"]
     },
     { 
         "url": "https://www.facebook.com/%E4%B8%80%E7%95%9D%E7%94%B0%E6%AD%90%E9%A2%A8%E5%B0%8F%E9%A4%A8-139475359452929/",
@@ -30,11 +30,21 @@ urlToRequest=[
     {
         "url": "https://www.facebook.com/busypignckuvictor123/",
         "type": [u"滷味"]
-    },   
+    },
+    {
+        "url": "https://www.facebook.com/%E8%80%81%E5%A4%AB%E5%AD%90%E7%89%9B%E8%82%89%E9%BA%B5-%E8%82%B2%E6%A8%82%E8%A1%97-1036393546389365/",
+        "type": [u"中式小吃"]
+    },
+    {
+        "url": "https://www.facebook.com/pages/category/Japanese-Restaurant/%E6%A8%82%E5%93%81%E5%B1%8B-513101125389726/",
+        "type": [u"日式料理",u"日式丼飯"]
+    },
+    {
+        "url": "https://www.facebook.com/%E7%B6%93%E5%85%B8%E5%92%96%E5%93%A9-318197334864141/",
+        "type": [u"日式料理",u"日式丼飯"]
+    }
+    
 ]
-
-
-
 
 def requestfb(url):
     try:
@@ -57,6 +67,7 @@ def findContactInfo(tag):
 
 def findPageType1(taglist,dictForOnePage):
     for item in taglist:
+        timelist=[]
         address=item.find(class_="_2wzd")
         if address: # address
             # If a tag has only one child, and that child is a NavigableString,
@@ -66,7 +77,8 @@ def findPageType1(taglist,dictForOnePage):
             dictForOnePage["address"]= str(address.contents[2])
         else:
             if len(item.contents) > 1: # it is bussiness hour
-                dictForOnePage["bussiness hour"]=str(item.contents[0].string) 
+                timelist.append(str(item.contents[0].string))
+                dictForOnePage["bussiness hour"]=timelist
             else: pass
 
 
