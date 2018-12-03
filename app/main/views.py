@@ -1,7 +1,7 @@
 from . import main # import mainBlueprint
 from .messages import resMessages
 from flask import request
-VTOKEN="webhook verify!!!!"
+import os
 
 @main.route('/',methods=["GET"])
 def index():
@@ -10,7 +10,7 @@ def index():
     verifyChallange=verifyDict.get("hub.challenge")
     verifyMode=verifyDict.get("hub.mode")
 
-    if verifyMode=="subscribe" and verifyToken==VTOKEN:
+    if verifyMode=="subscribe" and verifyToken==os.environ.get("VTOKEN"):
         print("Successful!")
         return verifyChallange
     else: 
