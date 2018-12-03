@@ -18,5 +18,4 @@ def create_app():
     app.register_blueprint(mainBlueprint)
     # attach route and error handler here
    
-    
     return app
