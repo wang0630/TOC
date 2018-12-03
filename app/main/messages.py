@@ -57,8 +57,9 @@ def resMessages(psid,text):
         for foodType in typeList:
             if foodType in text: # a certain food type is mentioned in the text
                 currentUser.foodAsking.gotoType(foodType) # transition to askingType
+                typeCursor=currentUser.foodAsking.allNames
                 li=[]
-                for item in currentUser.foodAsking.allNames:
+                for item in typeCursor:
                     li.append(item.get("name"))
                 currentUser.foodAsking.nameListsBasedOnType=li
                 dataTosend=makingHeader(psid, "\n".join(li)) # join all the string name
