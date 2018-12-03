@@ -51,15 +51,14 @@ def resMessages(psid,text):
         currentUser=userList[userIndex]
 
 
-    if currentUser.foodAsking.is_dummy():  # only dummy can go to type
+    if currentUser.foodAsking.is_dummy():  # initial is dummy state, can go to type or name state
         typeFlag=False
         nameFlag=False
         for foodType in typeList:
             if foodType in text: # a certain food type is mentioned in the text
                 currentUser.foodAsking.gotoType(foodType) # transition to askingType
-                typeCursor=currentUser.foodAsking.allNames
                 li=[]
-                for item in typeCursor:
+                for item in currentUser.foodAsking.allNames:
                     li.append(item.get("name"))
                 currentUser.foodAsking.nameListsBasedOnType=li
                 dataTosend=makingHeader(psid, "\n".join(li)) # join all the string name
@@ -67,7 +66,7 @@ def resMessages(psid,text):
                 break
         
         if not typeFlag: # there is no such request type, maybe user input is a certain restaurant?
-            allNameAvailable=getAllNames(currentUser.foodAsking.client) # get all documents in db
+            allNameAvailable=getAllNames(currentUser.foodAsking.ncku) # get all documents in db
             for name in allNameAvailable:
                 if name in text:
                     currentUser.foodAsking.gotoName() # to name state
@@ -88,14 +87,14 @@ def resMessages(psid,text):
             dataTosend=makingHeader(psid,u"沒有這家餐廳喔！\n請重新輸入想知道+餐廳類型 或是 想知道+餐廳名稱")
             del currentUser.foodAsking.nameListsBasedOnType # erase cuz we request user to reinput
             currentUser.foodAsking.to_dummy() # bad request, force it to dummy state
-    else:
+    else: # in name, address, contact info, google map, hour state
         if u"地址" in text: # asking address
             currentUser.foodAsking.gotoAddress()
             whatUserWant=currentUser.foodAsking.address
         elif u"聯絡方式" in text: # asking contact info
             currentUser.foodAsking.gotoPhoneNumber()
             whatUserWant=currentUser.foodAsking.phone
-        elif u"google map" in text :
+        elif u"map網址" in text :
             currentUser.foodAsking.gotoMap()
             whatUserWant=currentUser.foodAsking.map
         elif u"營業時間" in text:
@@ -104,6 +103,9 @@ def resMessages(psid,text):
         elif u"fb" in text:
             currentUser.foodAsking.gotoFB()
             whatUserWant=currentUser.foodAsking.fb
+        elif u"想重新輸入餐廳名字" in text or u"想重新輸入餐廳類型" in text:
+            currentUser.foodAsking.to_dummy()
+            whatUserWant=u"可以重新輸入了！"
         else: 
             whatUserWant=u"你的request不正確喔，請再試一次！"
         

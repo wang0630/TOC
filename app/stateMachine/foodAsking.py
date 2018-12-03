@@ -46,7 +46,7 @@ class FoodAsking():
         },
         {
             "trigger": "gotoName",
-            "source":["dummy","askingType"],
+            "source":"*",
             "dest": "askingName",
             "after": "transitName"
         },
@@ -65,9 +65,9 @@ class FoodAsking():
                               transitions=FoodAsking.transitions,
                               initial="dummy" )
         self.client=connect() # get client
+        
         self.ncku=self.client.region.ncku
-        # add transition of askingTpye
-        self.machine.add_transition("gotoType","dummy","askingType",after="transitType")
+
 
     def transitType(self,requestType):
         print("in transitType")
