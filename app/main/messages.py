@@ -94,6 +94,8 @@ def resMessages(psid,text):
             whatUserWant=currentUser.foodAsking.address
         elif u"聯絡方式" in text: # asking contact info
             currentUser.foodAsking.gotoPhoneNumber()
+            if not currentUser.foodAsking.phone:
+                whatUserWant=u"我們沒有他們的聯絡方式，抱歉！！！"
             whatUserWant=currentUser.foodAsking.phone
         elif u"map網址" in text :
             currentUser.foodAsking.gotoMap()
