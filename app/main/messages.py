@@ -42,7 +42,7 @@ def resMessages(psid,text):
     accessToken=os.environ.get("ACCESS_TOKEN")
     # if userIndex is -1 -> this user is a new user
     userIndex=findUser(psid)
-    
+    print(len(userList))
     if userIndex==-1 : # new user!
         currentUser=User(psid)
         userList.append(currentUser)
