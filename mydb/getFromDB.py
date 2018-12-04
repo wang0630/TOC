@@ -4,7 +4,6 @@ import os
 def connect():
     username=os.environ.get("MONGODB_USER")
     password=os.environ.get("MONGODB_PASSWORD")
-    print(f"{username} and {password}")
     client=MongoClient(f"mongodb://{username}:{password}@toc-shard-00-00-nmnfw.mongodb.net:27017,toc-shard-00-01-nmnfw.mongodb.net:27017,toc-shard-00-02-nmnfw.mongodb.net:27017/test?ssl=true&replicaSet=TOC-shard-0&authSource=admin&retryWrites=true")
     return client
 

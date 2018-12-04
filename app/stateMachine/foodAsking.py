@@ -77,17 +77,22 @@ class FoodAsking():
         print(f"now enter name state!")
 
     def transitAddress(self):
+        print("in addressType")
         self.address=getAddress(self.ncku,self.resturantName)
 
     def transitFB(self):
+        print("in fbType")
         self.fb=getFB(self.ncku,self.resturantName)
     
     def transitBussinessHour(self):
+        print("in hour")
         self.hour=getBussinessHour(self.ncku,self.resturantName)
     
     def transitMap(self):
+        print("in map")
         self.map=getMap(self.ncku,self.resturantName)
     
     def transitPhoneNumber(self):
+        print("in contact info")
         self.phone=getPhoneNumber(self.ncku,self.resturantName)
 
