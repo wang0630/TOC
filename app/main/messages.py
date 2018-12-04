@@ -83,7 +83,7 @@ def resMessages(psid,text):
         
         if text[3:] in currentUser.foodAsking.nameListsBasedOnType: # if the resturant name user wants(想知道xxx)
             currentUser.foodAsking.resturantName=text[3:] # get the resturant name
-            dataTosend=makingHeader(psid,u"想知道什麼資訊？\n(地址,fb網址,聯絡方式,google map網址,營業時間）")
+            dataTosend=makingHeader(psid,u"想知道什麼資訊？\n(地址,fb網址,聯絡方式,google map網址,營業時間)")
         else:
             dataTosend=makingHeader(psid,u"沒有這家餐廳喔！\n請重新輸入想知道+餐廳類型 或是 想知道+餐廳名稱")
             del currentUser.foodAsking.nameListsBasedOnType # erase cuz we request user to reinput
@@ -99,7 +99,7 @@ def resMessages(psid,text):
                 whatUserWant=u"我們沒有他們的聯絡方式，抱歉！！！"
             else:
                 whatUserWant=currentUser.foodAsking.phone
-        elif u"map網址" in text :
+        elif u"google map" in text :
             currentUser.foodAsking.gotoMap()
             whatUserWant=currentUser.foodAsking.map
         elif u"營業時間" in text:
@@ -112,13 +112,14 @@ def resMessages(psid,text):
             currentUser.foodAsking.to_dummy()
             whatUserWant=u"可以重新輸入了！"
         else: 
-            whatUserWant=u"你的request不正確喔，請再試一次！"
+            whatUserWant=u"你的request不正確喔，請再試一次！\n(地址,fb網址,聯絡方式,google map網址,營業時間)"
         
         dataTosend=makingHeader(psid,whatUserWant)
     # using text to deternmine
 
     # assign metadata
     print(f"state is {currentUser.foodAsking.state}")
+
     dataTosend["message"]["metadata"]=dataTosend["message"]["metadata"]
     param={"access_token":accessToken}
     if(accessToken):

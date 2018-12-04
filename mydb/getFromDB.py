@@ -34,4 +34,6 @@ def getMap(col,name):
     return mapCursor[0].get("mapURL")
 def getBussinessHour(col,name):
     hourCursor=col.find({"name": name},{"bussiness hour":1 , "_id":0} )
-    return hourCursor[0].get("bussiness hour")
+    hourArray=hourCursor[0].get("bussiness hour")
+    print("\n".join(hourArray))
+    return "\n".join(hourArray)
