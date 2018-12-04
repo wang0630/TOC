@@ -50,7 +50,8 @@ def resMessages(psid,text):
         print("this is an old user")
         currentUser=userList[userIndex]
 
-    print(currentUser.foodAsking.__dict__)
+    print(currentUser.foodAsking.psid)
+    
     if currentUser.foodAsking.is_dummy():  # initial is dummy state, can go to type or name state
         typeFlag=False
         nameFlag=False
