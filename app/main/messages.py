@@ -118,6 +118,7 @@ def resMessages(psid,text):
     # using text to deternmine
 
     # assign metadata
+    print(f"state is {currentUser.foodAsking.state}")
     dataTosend["message"]["metadata"]=dataTosend["message"]["metadata"]
     param={"access_token":accessToken}
     if(accessToken):
