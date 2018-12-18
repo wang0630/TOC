@@ -68,7 +68,7 @@ class FoodAsking():
         
         self.ncku=self.client.region.ncku
 
-        self.machine.get_graph().draw('my_state_diagram.png', prog='dot')
+        #self.machine.get_graph().draw('my_state_diagram.png', prog='dot')
 
 
     def transitType(self,requestType):
