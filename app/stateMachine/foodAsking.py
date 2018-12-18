@@ -1,5 +1,5 @@
 from transitions import Machine
-import sys
+# from transitions.extensions import GraphMachine as Machine
 from mydb.getFromDB import connect,getAllNames,getAddress,getAllNamesOfCertainType,getBussinessHour,getFB,getMap,getPhoneNumber
 class FoodAsking():
     states=[
@@ -67,6 +67,8 @@ class FoodAsking():
         self.client=connect() # get client
         
         self.ncku=self.client.region.ncku
+
+        self.machine.get_graph().draw('my_state_diagram.png', prog='dot')
 
 
     def transitType(self,requestType):
