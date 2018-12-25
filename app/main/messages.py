@@ -78,7 +78,7 @@ def resMessages(psid,text):
         
         if not typeFlag and not nameFlag:
             currentUser.foodAsking.gotoDemo()
-            dataTosend=makingHeader(psid,u"你的input錯了喔！\n請輸入想知道+餐廳類型 或是 想知道+餐廳名稱"+self.demo)
+            dataTosend=makingHeader(psid,u"hello")
     
     elif currentUser.foodAsking.is_askingType(): # user must ask information about the resturant, must go to name state
         currentUser.foodAsking.gotoName()
