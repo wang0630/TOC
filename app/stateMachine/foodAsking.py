@@ -11,6 +11,7 @@ class FoodAsking():
         {"name": "askingMap"},
         {"name": "askingFB"},
         {"name": "askingBussinessHour"},
+        {"name": "demo"}
     ]
 
     transitions=[
@@ -55,6 +56,12 @@ class FoodAsking():
             "source": "dummy",
             "dest": "askingType",
             "after": "transitType"
+        },
+        {
+            "trigger":"gotoDemo",
+            "source": "dummy",
+            "dest": "demo",
+            "after": "transitDemo"
         }
     ]
 
@@ -97,4 +104,8 @@ class FoodAsking():
     def transitPhoneNumber(self):
         print("in contact info")
         self.phone=getPhoneNumber(self.ncku,self.resturantName)
+
+    def transitDemo(self):
+        print("Demo")
+        self.demo="Hello demo"
 
